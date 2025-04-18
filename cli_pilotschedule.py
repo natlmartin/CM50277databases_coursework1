@@ -1,19 +1,11 @@
-import sqlite3
+import utils
 
-conn = sqlite3.connect('airline.db')
-print("Connected to database.\n")
-cursor = conn.cursor()
-
-def view_pilot_schedule():
+def view_pilot_schedule(conn):
+    cursor = conn.cursor()
     print("Available pilots: \n")
     cursor.execute("SELECT pilot_id FROM pilots;")
-    pilot_results = (cursor.fetchall())
-    for row in pilot_results:
-        print(row)
+    utils.format_tuple_output(cursor)
     pilot = input("Which of the above pilots would you like to view the schedule for? \n")
-    cursor.execute("SELECT * FROM flights WHERE pilot_id = ?", (pilot,))
-    schedule_results = (cursor.fetchall())
-    for row in schedule_results:
-        print(row)
-    conn.commit()
-    conn.close()
+    cursor.execute("SELECT flights.*, flight_schedule.* FROM flights JOIN flight_schedule ON flights.flight_id = flight_schedule.flight_id WHERE pilot_id = ? ORDER BY departure_date, departure_time", (pilot,))
+    utils.format_tuple_output(cursor)
+    cursor.close()

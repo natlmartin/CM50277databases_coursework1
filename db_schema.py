@@ -1,6 +1,4 @@
 ## 2.1 Database setup in SQLite
-import sqlite3
-
 def create_tables(conn):
     # enable foreign keys: https://sqlite.org/foreignkeys.html
     conn.execute("PRAGMA foreign_keys = ON")

@@ -19,6 +19,6 @@ conn = sqlite3.connect('airline.db')
 # db_queries.summarise_data(conn)
 
 ## 2.3 Application development in Python 
-#cli.user_interface()
+cli.user_interface(conn)
 
 conn.close()
