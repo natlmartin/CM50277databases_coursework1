@@ -4,12 +4,11 @@ import db_queries
 import cli
 
 conn = sqlite3.connect('airline.db')
-print("Connected to database.\n")
 cursor = conn.cursor()
 
 ## 2.1 Database setup in SQLite
-# db_schema.create_tables()
-# db_schema.populate_tables()
+db_schema.create_tables()
+db_schema.populate_tables()
 
 ## 2.2 SQL queries and database interaction 
 #db_queries.flight_retrieval_queries()
@@ -19,4 +18,4 @@ cursor = conn.cursor()
 #db_queries.summarise_data()
 
 ## 2.3 Application development in Python 
-cli.user_interface()
+#cli.user_interface()

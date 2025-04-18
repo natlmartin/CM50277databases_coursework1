@@ -3,12 +3,11 @@ import sqlite3
 
 def create_tables():
     conn = sqlite3.connect('airline.db')
-    print("Database created successfully.")
+    print("Database created.\n")
     # enable foreign keys: https://sqlite.org/foreignkeys.html
     conn.execute("PRAGMA foreign_keys = ON")
     cursor = conn.cursor()
 
-    # create tables  
     table_creation = """
     CREATE TABLE IF NOT EXISTS flights (
         flight_id INT NOT NULL PRIMARY KEY, departure_airport VARCHAR(20), arrival_airport VARCHAR(20), pilot_id INT, schedule_id INT, plane_id INT, direct_flight BOOLEAN, passenger_capacity INT, ticket_price FLOAT, FOREIGN KEY (departure_airport) REFERENCES destinations (airport_code), FOREIGN KEY (arrival_airport) REFERENCES destinations (airport_code), FOREIGN KEY (pilot_id) REFERENCES pilots (pilot_id), FOREIGN KEY (schedule_id) REFERENCES flight_schedule (schedule_id)
@@ -39,11 +38,11 @@ def create_tables():
     cursor.close() # close cursor
     conn.close() # close connection 
 
-    print("Database connection closed.")
+    print("\nDatabase connection closed.")
 
 def populate_tables(): 
     conn = sqlite3.connect('airline.db')
-    print("Connected to database successfully.")
+    print("\nConnected to database.")
     cursor = conn.cursor()
 
     populate_flights = """INSERT INTO flights (flight_id, departure_airport, arrival_airport, pilot_id, schedule_id, plane_id, direct_flight, passenger_capacity, ticket_price) VALUES 
@@ -165,4 +164,4 @@ def populate_tables():
     conn.commit() # save changes
     cursor.close() # close cursor
     conn.close() # close connection 
-    print("Database connection closed.")
+    print("\nDatabase connection closed.")
