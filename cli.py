@@ -12,12 +12,6 @@ conn = sqlite3.connect('airline.db')
 print("Connected to database.\n")
 cursor = conn.cursor()
 
-# def 5_view_pilot_schedule(): 
-
-# def 6_view_destination_info():
-
-# def 7_update_destination_info(): 
-
 def user_interface(): 
 
     while True: 

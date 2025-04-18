@@ -1,9 +1,7 @@
 ## 2.1 Database setup in SQLite
 import sqlite3
 
-def create_tables():
-    conn = sqlite3.connect('airline.db')
-    print("Database created.\n")
+def create_tables(conn):
     # enable foreign keys: https://sqlite.org/foreignkeys.html
     conn.execute("PRAGMA foreign_keys = ON")
     cursor = conn.cursor()
@@ -34,15 +32,10 @@ def create_tables():
     print("The followed tables were created successfully:\n")
     print(cursor.fetchall())
 
-    conn.commit() # save changes
-    cursor.close() # close cursor
-    conn.close() # close connection 
+    conn.commit() 
+    cursor.close()
 
-    print("\nDatabase connection closed.")
-
-def populate_tables(): 
-    conn = sqlite3.connect('airline.db')
-    print("\nConnected to database.")
+def populate_tables(conn): 
     cursor = conn.cursor()
 
     populate_flights = """INSERT INTO flights (flight_id, departure_airport, arrival_airport, pilot_id, schedule_id, plane_id, direct_flight, passenger_capacity, ticket_price) VALUES 
@@ -163,5 +156,3 @@ def populate_tables():
 
     conn.commit() # save changes
     cursor.close() # close cursor
-    conn.close() # close connection 
-    print("\nDatabase connection closed.")
