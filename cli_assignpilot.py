@@ -1,5 +1,6 @@
 import utils
 
+# User can view a list of upcoming flights, select a flight_id and update the pilot_id associated with that record.
 def assign_pilot(conn):
     cursor = conn.cursor()
     print("Upcoming flights: \n")

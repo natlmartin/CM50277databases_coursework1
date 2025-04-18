@@ -1,11 +1,11 @@
 import utils
 
+# User can select a parameter to update, select the flight_id for the flight to be updated and update the relevant column. 
 def update_flight_info(conn):
     cursor = conn.cursor()
     user_input = input("Which flight info would you like to update? Please choose from departure_time, flight_status, price: \n")
     match user_input: 
         case 'departure_time':
-            # Need to add sanity checking for flight id 
             flight_id = input("Please enter the flight id this applies to: \n")
             dept_date = input("Please enter a new departure date (YYYY-MM-DD): \n")
             dept_time = input("Please enter a new departure time (HH:MM:SS): \n")

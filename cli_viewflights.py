@@ -1,5 +1,6 @@
 import utils
 
+# User can choose from multiple criteria to search for a flight and provide a parameter to print all rows matching that SELECT query. 
 def view_flights(conn):
     cursor = conn.cursor()
     user_input = input("Please enter which criteria you would like to view flights by: departure_airport, arrival_airport, departure_date: \n")

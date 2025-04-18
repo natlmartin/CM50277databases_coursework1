@@ -1,5 +1,6 @@
 import utils
 
+# User can view a list of pilots in the pilots table and select a pilot_id to view the schedule for that pilot in date/time order.
 def view_pilot_schedule(conn):
     cursor = conn.cursor()
     print("Available pilots: \n")

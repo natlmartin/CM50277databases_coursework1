@@ -1,5 +1,6 @@
 import sqlite3
 
+# Asks user to input flight details and parses the input to generate an UPDATE statement to create new records in the flights and flight_schedule tables
 def add_flight(conn):
     cursor = conn.cursor()
     try: 

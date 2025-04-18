@@ -4,7 +4,7 @@ import sqlite3
 import utils
 
 ### FLIGHT RETRIEVAL ###
-
+# Take an airport_code, flight_status and departure_date to populate SQL SELECT statements and print the result
 def flight_retrieval_queries(conn, destination, status, departure_date): 
     # Assumed from the brief that this needs to allow for a single criteria in each statement as the lab sheet specifies "destination, status OR departure date" but I have included a multiple query option in case.
     flight_retrieval_destination = "SELECT * FROM flights WHERE arrival_airport = ?;"
@@ -25,10 +25,10 @@ def flight_retrieval_queries(conn, destination, status, departure_date):
     cursor.execute(flight_multiple_criteria, (departure_date, status,))
     print("Retrieved flights matching departure date: ", (departure_date), "or status: ", (status), "\n")
     utils.format_sql_output(cursor)
-
     cursor.close()
 
 ### SCHEDULE MODIFICATION ###
+# Take a departure_time, departure_date, flight_status and arrival_data to populate SQL UPDATE statements. Print confirmation that the update has worked. 
 def schedule_modification(conn, departure_time, departure_date, status, arrival_date): 
     update_departure_time = "UPDATE flight_schedule SET departure_time = ? WHERE departure_date = ?;"
     update_flight_status = "UPDATE flight_schedule SET flight_status = ? WHERE arrival_date = ?;"
@@ -41,6 +41,7 @@ def schedule_modification(conn, departure_time, departure_date, status, arrival_
     cursor.close()
 
 ### PILOT ASSIGNMENT ###
+# Take a pilot_id and schedule_id to populate UPDATE and SELECT statements. Assign a pilot_id to a schedule_id (flight) or display the flight schedule for a specific pilot. 
 def pilot_assignment(conn, pilot, schedule):
     assign_pilot = "UPDATE flights SET pilot_id = ? WHERE schedule_id = ?;"
     retrieve_pilot_schedule = "SELECT flights.departure_airport, flights.arrival_airport, flights.pilot_id, flight_schedule.* FROM flights LEFT JOIN flight_schedule ON flights.flight_id = flight_schedule.flight_id WHERE flights.pilot_id = ? ORDER BY flight_schedule.departure_date, flight_schedule.departure_time;"
@@ -53,11 +54,11 @@ def pilot_assignment(conn, pilot, schedule):
     cursor.execute(retrieve_pilot_schedule, (pilot,))
     print("Schedule for pilot: ", (pilot),  "\n")
     utils.format_tuple_output(cursor)
-
     conn.commit()
     cursor.close()
 
 ### Destination Management ###
+# Take an airport_code and total_runways. Show information from the destinations and cities tables for the given airport_code and/or update the total number of runways at an airport. 
 def retrieve_destination_information(conn, airport, runways):
     view_destination_info = "SELECT destinations.*, cities.* FROM destinations JOIN cities ON destinations.city_id = cities.city_id WHERE airport_code = ?;"
     update_destination_info = "UPDATE destinations SET total_runways = ? WHERE airport_code = ?;"
@@ -70,7 +71,8 @@ def retrieve_destination_information(conn, airport, runways):
     cursor.close() 
 
 
-### Summarise Data ### 
+### Summarise Data ###
+# Demo of different SELECT statements to provide meaningful data on the airline table. 
 def summarise_data(conn): 
     total_flights_per_destination = "SELECT COUNT(*) FROM flights WHERE arrival_airport = 'DXB';"
     total_flights_per_pilot = "SELECT pilot_id, COUNT(flight_id) FROM flights GROUP BY pilot_id;"
@@ -79,5 +81,4 @@ def summarise_data(conn):
     print("Total flights for destination = ", cursor.fetchone()[0])
     cursor.execute(total_flights_per_pilot)
     utils.format_tuple_output(cursor)
-
     cursor.close() 

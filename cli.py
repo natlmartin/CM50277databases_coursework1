@@ -6,7 +6,7 @@ import cli_assignpilot
 import cli_pilotschedule
 import cli_destinationinfo
 
-
+# Runs main CLI for application. User supplies a command to call one of the CLI functions. 
 def user_interface(conn): 
     cursor = conn.cursor()
     while True: 
@@ -28,5 +28,7 @@ def user_interface(conn):
             case '0':
                 print("Happy travels!")
                 break
+            case _:
+                print("Input not recognised - please enter a number between 0 - 6.\n")
     cursor.close() 
 

@@ -1,4 +1,6 @@
 ## 2.1 Database setup in SQLite
+
+# Create tables 
 def create_tables(conn):
     # enable foreign keys: https://sqlite.org/foreignkeys.html
     conn.execute("PRAGMA foreign_keys = ON")
@@ -29,13 +31,12 @@ def create_tables(conn):
     cursor.execute(table_query)
     print("The followed tables were created successfully:\n")
     print(cursor.fetchall())
-
     conn.commit() 
     cursor.close()
 
+# Populate tables with data 
 def populate_tables(conn): 
     cursor = conn.cursor()
-
     populate_flights = """INSERT INTO flights (flight_id, departure_airport, arrival_airport, pilot_id, schedule_id, plane_id, direct_flight, passenger_capacity, ticket_price) VALUES 
         (101, 'LHR', 'JFK', 1, 1, 201, TRUE, 250, 799.99),
         (102, 'JFK', 'HND', 2, 2, 202, FALSE, 300, 1200.50),
@@ -152,5 +153,5 @@ def populate_tables(conn):
     print("\ncities records updated successfully\n")
     print("Total number of rows created: ", conn.total_changes)
 
-    conn.commit() # save changes
-    cursor.close() # close cursor
+    conn.commit()
+    cursor.close()

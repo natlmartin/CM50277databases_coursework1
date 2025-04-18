@@ -1,5 +1,6 @@
 import utils
 
+# User can view a list of airport_codes, select an airport to view all corresponding data in the cities and destinations tables. They can then choose a parameter to update values in the selected columns for that airport.
 def destination_info(conn):
     cursor = conn.cursor()
     cursor.execute("SELECT airport_code FROM destinations;")
