@@ -38,6 +38,8 @@ def create_tables():
     cursor.close() # close cursor
     conn.close() # close connection 
 
+    print("Database connection closed.")
+
 def populate_tables(): 
     conn = sqlite3.connect('airline.db')
     print("Connected to database successfully.")
@@ -162,3 +164,4 @@ def populate_tables():
     conn.commit() # save changes
     cursor.close() # close cursor
     conn.close() # close connection 
+    print("Database connection closed.")
