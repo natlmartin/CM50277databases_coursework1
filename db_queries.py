@@ -29,14 +29,17 @@ def flight_retrieval_queries(conn, destination, status, departure_date):
 
 ### SCHEDULE MODIFICATION ###
 # Take a departure_time, departure_date, flight_status and arrival_data to populate SQL UPDATE statements. Print confirmation that the update has worked. 
-def schedule_modification(conn, departure_time, departure_date, status, arrival_date): 
+def schedule_modification(conn, departure_time, departure_date, status, arrival_date, flight_id): 
     update_departure_time = "UPDATE flight_schedule SET departure_time = ? WHERE departure_date = ?;"
     update_flight_status = "UPDATE flight_schedule SET flight_status = ? WHERE arrival_date = ?;"
+    delete_flight = "DELETE FROM flights WHERE flight_id = ?;"
     cursor = conn.cursor()
     cursor.execute(update_departure_time, (departure_time, departure_date,))
     print("Record updated.\n")
     cursor.execute(update_flight_status, (status, arrival_date,))
     print("Record updated.\n")
+    cursor.execute(delete_flight, (flight_id,))
+    print("Record deleted.\n")
     conn.commit()
     cursor.close()
 

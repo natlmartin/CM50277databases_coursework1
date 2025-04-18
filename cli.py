@@ -8,7 +8,6 @@ import cli_destinationinfo
 
 # Runs main CLI for application. User supplies a command to call one of the CLI functions. 
 def user_interface(conn): 
-    cursor = conn.cursor()
     while True: 
         print("COMMANDS:\n1 Add a flight\n2 View flights\n3 Update flight info\n4 Assign pilot\n5 View pilot schedule\n6 View/Update destination information\n0 Exit")
         command = input("Please enter the number of the command you would like to use from the above list: \n")
@@ -30,5 +29,4 @@ def user_interface(conn):
                 break
             case _:
                 print("Input not recognised - please enter a number between 0 - 6.\n")
-    cursor.close() 
 
