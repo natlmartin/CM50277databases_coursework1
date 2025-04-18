@@ -8,7 +8,7 @@ conn = sqlite3.connect('airline.db')
 ### FUNCTIONS HAVE BEEN COMMENTED OUT FOR TESTING - PLEASE UNCOMMENT TO RUN ###
 
 ## 2.1 Database setup in SQLite - functions must be run one after the other to avoid conflicts with key constraints 
-db_schema.create_tables(conn)
+# db_schema.create_tables(conn)
 # db_schema.populate_tables(conn)
 
 ## 2.2 SQL queries and database interaction 
