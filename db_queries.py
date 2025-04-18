@@ -1,3 +1,4 @@
+## 2.2 SQL queries and database interaction 
 import sqlite3
 
 ''' Flight Retrieval: Retrieve flights based on multiple criteria, such as destination, status, or departure date.
